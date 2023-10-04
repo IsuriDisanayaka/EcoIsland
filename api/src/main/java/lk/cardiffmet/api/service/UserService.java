@@ -16,9 +16,13 @@ import java.util.ArrayList;
 public interface UserService {
     UserDto  saveUser(UserDto dto ,String siteURL) throws MessagingException, UnsupportedEncodingException;
     ArrayList<UserDto> getGetAllUsers();
-    List<UserDto>searchUser(String type,String input);
-    public void sendVerificationEmail(User user, String siteURL) throws UnsupportedEncodingException, MessagingException;
-    public boolean verify(String verificationCode);
-    boolean login(String email, String password);
+    List<UserDto>searchUsers(String type,String input);
+ void sendVerificationEmail(User user, String siteURL) throws UnsupportedEncodingException, MessagingException;
+   boolean verify(String verificationCode);
+
+   UserDto getUserDTOByEmail(String email) ;
+
+ Boolean searchUser(String email, String password) ;
+boolean login(String email, String password);
 
     }

@@ -40,6 +40,7 @@ public interface UserRepo extends JpaRepository<User, Integer> {
     List<User> findByGender(String input);
 
 
+    Boolean existsUserByEmailAndPassword(String email,String password);
 
     @Query("SELECT u FROM User u WHERE u.verificationCode = ?1")
     public User findByVerificationCode(String code);

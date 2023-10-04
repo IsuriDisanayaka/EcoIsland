@@ -7,7 +7,11 @@ import lk.cardiffmet.api.dto.AdminDto;
  * @since 9/30/23
  **/
 public interface AdminService {
-    Boolean searchUser(String email,String password);
      AdminDto getAdminDetails(int id);
      AdminDto updateAdminDetails(int id, AdminDto adminDto);
+
+     AdminDto getAdminDTOByEmail(String email) ;
+
+
+    Boolean searchUser(String email, String password);
 }

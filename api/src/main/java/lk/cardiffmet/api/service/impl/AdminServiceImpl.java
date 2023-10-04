@@ -1,11 +1,14 @@
 package lk.cardiffmet.api.service.impl;
 
 import lk.cardiffmet.api.dto.AdminDto;
+import lk.cardiffmet.api.dto.UserDto;
 import lk.cardiffmet.api.entity.Admin;
+import lk.cardiffmet.api.entity.User;
 import lk.cardiffmet.api.repo.AdminRepo;
 import lk.cardiffmet.api.service.AdminService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -28,9 +31,7 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public Boolean searchUser(String email, String password) {
-
         return adminRepo.existsAdminByEmailAndPassword(email, password);
-
     }
 
     @Override
@@ -58,6 +59,9 @@ public class AdminServiceImpl implements AdminService {
             throw new EntityNotFoundException("Admin with ID " + id + " not found");
         }
     }
+
+
+
     private AdminDto mapAdminToDto(Admin admin) {
         AdminDto adminDTO = new AdminDto();
         adminDTO.setId(admin.getId());
@@ -66,4 +70,19 @@ public class AdminServiceImpl implements AdminService {
 
         return adminDTO;
     }
+    @Override
+    public AdminDto getAdminDTOByEmail(String email) {
+
+        Admin admin = adminRepo.findByEmail(email);
+        System.out.println(admin+"hey");
+
+       AdminDto adminDto = new AdminDto();
+       adminDto.setEmail(admin.getEmail());
+        adminDto.setPassword(admin.getPassword());
+
+        return adminDto;
+
+    }
+
+
 }

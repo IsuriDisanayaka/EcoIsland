@@ -32,7 +32,7 @@ public class DataInitializer implements ApplicationRunner {
 
         Admin admin2 = new Admin();
         admin2.setId(2);
-        admin2.setEmail("admin1@example.com");
+        admin2.setEmail("admin2@example.com");
         admin2.setPassword("123");
         adminRepo.save(admin2);
 

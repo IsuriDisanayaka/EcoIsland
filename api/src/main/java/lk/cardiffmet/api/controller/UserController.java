@@ -2,6 +2,7 @@ package lk.cardiffmet.api.controller;
 
 import lk.cardiffmet.api.dto.UserDto;
 import lk.cardiffmet.api.repo.UserRepo;
+import lk.cardiffmet.api.service.AdminService;
 import lk.cardiffmet.api.utill.StandardResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  * @author Isuri Disanayaka <isuriumeshika1@gmail.com>
@@ -33,12 +35,13 @@ public class UserController {
     private UserService userService;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity saveUser(@RequestBody UserDto userDto, HttpServletRequest request ) throws MessagingException, UnsupportedEncodingException {
+    public ResponseEntity saveUser(@RequestBody UserDto userDto, HttpServletRequest request) throws MessagingException, UnsupportedEncodingException {
 
-        UserDto user = userService.saveUser(userDto,getSiteURL(request)+"/api/v1/user");
+        UserDto user = userService.saveUser(userDto, getSiteURL(request) + "/api/v1/user");
 
         return new ResponseEntity(new StandardResponse(200, "Done", user), HttpStatus.CREATED);
     }
+
     private String getSiteURL(HttpServletRequest request) {
         String siteURL = request.getRequestURL().toString();
         return siteURL.replace(request.getServletPath(), "");
@@ -46,18 +49,19 @@ public class UserController {
 
 
     @GetMapping
-    public ResponseEntity getAllUsers(){
+    public ResponseEntity getAllUsers() {
         ArrayList<UserDto> getAllUsers = userService.getGetAllUsers();
 
-        return new ResponseEntity(new StandardResponse(200,"Done",getAllUsers),HttpStatus.OK);
+        return new ResponseEntity(new StandardResponse(200, "Done", getAllUsers), HttpStatus.OK);
     }
 
     @GetMapping(path = "/{type}/{input}")
-    public ResponseEntity Search(@PathVariable("type")String type,@PathVariable("input") String input) {
-        List<UserDto> search = userService.searchUser(type,input);
+    public ResponseEntity Search(@PathVariable("type") String type, @PathVariable("input") String input) {
+        List<UserDto> search = userService.searchUsers(type, input);
         return new ResponseEntity(new StandardResponse(200, "Done", search), HttpStatus.OK);
 
     }
+
     @GetMapping("/verify")
     public String verifyUser(@Param("code") String code) {
         if (userService.verify(code)) {
@@ -67,8 +71,10 @@ public class UserController {
             return "verify_fail";
         }
     }
+
     @Autowired
     private UserRepo userRepo;
+
     @GetMapping("/total")
     public int getTotalUsers() {
         return userRepo.getTotalUsers();
@@ -83,4 +89,7 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new StandardResponse(401, "Login failed", null));
         }
     }
+
+
+
 }

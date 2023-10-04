@@ -26,15 +26,11 @@ public class User{
 
     @Column(columnDefinition = "VARCHAR(100)")
     @NotNull(message = "Name is mandatory")
-    private String firstName;
+    private String fristName;
 
     @Column(columnDefinition = "VARCHAR(100)")
     @NotNull(message = "Name is mandatory")
     private String lastName;
-
-    @Column(columnDefinition = "VARCHAR(100)")
-    @NotNull(message = "Full Name is mandatory")
-    private String fullName;
 
     @Column(columnDefinition = "VARCHAR(100)")
     @NotNull(message = "Address is mandatory")
@@ -52,11 +48,8 @@ public class User{
     @NotBlank(message = "NIC is mandatory")
     private String nic;
 
-    @Column(columnDefinition = "VARCHAR(50)",unique = true)
-    @NotBlank(message = "Number is mandatory")
-    private String number;
-
-    @Column(columnDefinition = "DATETIME",nullable = false)
+   
+    @Column(columnDefinition = "DATETIME")
     @Temporal(TemporalType.DATE)
     private Date dateOfBirth;
 
@@ -66,7 +59,9 @@ public class User{
 
     @Column(columnDefinition = "VARCHAR(255)")
     private String password;
-    private String role;
+    @Column(columnDefinition = "VARCHAR(255)")
+    private String role = "ROLE_USER";
+
 
     @CreationTimestamp
     @Column(columnDefinition = "DATETIME")
