@@ -37,4 +37,6 @@ public class AdminController {
         AdminDto updatedAdminDto = adminService.updateAdminDetails(id, adminDto);
         return ResponseEntity.ok(updatedAdminDto);
     }
+
+
 }

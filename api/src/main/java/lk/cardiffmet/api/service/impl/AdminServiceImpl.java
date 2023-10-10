@@ -74,13 +74,8 @@ public class AdminServiceImpl implements AdminService {
     public AdminDto getAdminDTOByEmail(String email) {
 
         Admin admin = adminRepo.findByEmail(email);
-        System.out.println(admin+"hey");
 
-       AdminDto adminDto = new AdminDto();
-       adminDto.setEmail(admin.getEmail());
-        adminDto.setPassword(admin.getPassword());
-
-        return adminDto;
+        return mapper.map(admin, AdminDto.class);
 
     }
 

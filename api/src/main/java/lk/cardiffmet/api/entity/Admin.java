@@ -27,4 +27,6 @@ public class Admin {
 
     @Column(columnDefinition = "VARCHAR(10)")
     private String password;
+    @Column(columnDefinition = "VARCHAR(50)")
+    private String role = "admin";
 }

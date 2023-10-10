@@ -1,0 +1,47 @@
+.post-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.post-card img {
+  width: 100%;
+  height: auto;
+  max-height: 200px; /* Adjust the max height as needed */
+  object-fit: cover;
+  margin-top: 10px;
+}
+
+.post-card h6 {
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.post-card p {
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.verify-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.verify-button .MuiButton-root {
+  margin-left: auto;
+}
+.scrollable-container {
+  max-height: 853px;
+  overflow: auto;
+}
+
+.scrollable-content {
+  padding: 27px;
+}

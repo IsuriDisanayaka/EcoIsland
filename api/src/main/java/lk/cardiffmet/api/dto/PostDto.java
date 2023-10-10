@@ -4,6 +4,8 @@ import lk.cardiffmet.api.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+
 import java.time.LocalDateTime;
 
 /**
@@ -15,12 +17,15 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Data
 public class PostDto {
-    private Long postId;
+    private int postId;
     private String title;
     private String content;
     private double price;
-    private byte[] image;
     private LocalDateTime timestamp;
     private String status;
+    private String imageUrl;
     private int id;
+    private  String fristName ;
+    private String contact;
+    private String address;
 }

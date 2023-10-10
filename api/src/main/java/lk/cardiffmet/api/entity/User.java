@@ -11,6 +11,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
+
 /**
  * @author Isuri Disanayaka <isuriumeshika1@gmail.com>
  * @since 9/26/23
@@ -59,8 +61,8 @@ public class User{
 
     @Column(columnDefinition = "VARCHAR(255)")
     private String password;
-    @Column(columnDefinition = "VARCHAR(255)")
-    private String role = "ROLE_USER";
+    @Column(columnDefinition = "VARCHAR(50)")
+    private String role = "user";
 
 
     @CreationTimestamp
@@ -75,7 +77,6 @@ public class User{
     private String verificationCode;
 
     private boolean isEnabled;
-
 
 
 

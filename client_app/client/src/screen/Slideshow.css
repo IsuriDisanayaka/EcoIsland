@@ -1,0 +1,13 @@
+.containerSlide {
+  width: 100vw;
+  height: 86vh;
+  margin: auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.containerSlide img {
+  height: 86vh;
+  width: 100vw;
+  object-fit: cover;
+}

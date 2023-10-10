@@ -1,0 +1,79 @@
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 55px;
+  margin-top: -10px;
+}
+
+.profile-box {
+  background-color: rgb(252, 255, 250);
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 574px;
+  margin-top: 20px;
+  height: 506px;
+  margin-left: 6px;
+  margin-top: 15px;
+}
+.change-box {
+  background-color: rgb(255, 255, 255);
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 574px;
+  margin-top: -10px;
+  height: 506px;
+  margin-left: -88px;
+}
+.label {
+  font-size: 1.25rem;
+  font-weight: 600;
+  position: relative;
+  top: 52px;
+}
+
+.input-field {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 2px;
+  margin-top: 66px;
+  height: 41px;
+}
+
+.updateButton {
+  color: white;
+  font-weight: bold;
+  width: 578px;
+  height: 57px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: -5px;
+  margin-top: 36px;
+  margin-left: 3px;
+  background-color: #032c03;
+  transition: background-color 0.3s;
+}
+
+.modal {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  z-index: 10000;
+}
+
+.modal-content {
+}
+
+.modal-buttons {
+  text-align: right;
+  margin-top: 10px;
+}

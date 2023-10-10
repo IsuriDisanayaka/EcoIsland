@@ -19,12 +19,15 @@ import net.bytebuddy.utility.RandomString;
 
 
 import javax.mail.MessagingException;
+import javax.mail.Session;
 import javax.mail.internet.MimeMessage;
+import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Isuri Disanayaka <isuriumeshika1@gmail.com>
@@ -43,8 +46,10 @@ public class UserServiceImpl implements UserService {
     QueryFactory queryFactory;
 
 
+
     @Autowired
     JavaMailSender mailSender;
+
 
 
     @Override
@@ -53,40 +58,31 @@ public class UserServiceImpl implements UserService {
         if (userRepo.existsById(dto.getId())) {
             throw new ValidateException("User already exists");
         }
+        if (dto.getRole() == null) {
+            dto.setRole("user");
+        }
         dto.setVerificationCode(RandomString.make(64));
-
         String encryptedPassword = encryptPassword(dto.getPassword());
-
         dto.setPassword(encryptedPassword);
-
-
         User user = userRepo.save(mapper.map(dto, User.class ));
-
-
-
-
-
         System.out.println(user+"ji");
-
         if(user!=null){
             sendVerificationEmail(user, siteURL);
         }
         return mapper.map(user, UserDto.class);
     }
 
-
+    private String encryptPassword(String password) {
+        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+        return hashedPassword;
+    }
 
     @Override
     public ArrayList<UserDto> getGetAllUsers() {
         List<User>all= userRepo.findAll();
         return mapper.map(all , new TypeToken<ArrayList<UserDto>>(){}.getType());
     };
-    private String encryptPassword(String password) {
-        // Here, you should use a secure password hashing algorithm, like BCrypt
-        // Example using BCrypt:
-        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
-        return hashedPassword;
-    }
+
 
     @Override
     public List<UserDto> searchUsers(String type, String input) {
@@ -97,9 +93,9 @@ public class UserServiceImpl implements UserService {
     public void sendVerificationEmail(User user, String siteURL)
             throws UnsupportedEncodingException, MessagingException {
         String toAddress = user.getEmail();
-        String fromAddress = "isuriumeshika1@gmail.com";
-        String senderName = "Isuri Disanayka";
-        String subject = "Please verify your registration";
+        String fromAddress = "ecoisland.app@gmail.com";
+        String senderName = "Ecoisland";
+        String subject = "'\uD83C\uDF89'Welcome to EcoIsland";
         String content = "Dear [[name]],<br>"
                 + "Please click the link below to verify your registration:<br>"
                 + "<h3><a href=\"[[URL]]\" target=\"_self\">VERIFY</a></h3>"
@@ -142,15 +138,12 @@ public class UserServiceImpl implements UserService {
         User user = userRepo.findByEmail(email);
 
         if (user == null) {
-            return false; // User not found
+            return false;
         }
 
-        // Check if the provided password matches the stored encrypted password
         if (BCrypt.checkpw(password, user.getPassword())) {
-            // Authentication successful
             return true;
         } else {
-            // Authentication failed
             return false;
         }
     }
@@ -158,10 +151,6 @@ public class UserServiceImpl implements UserService {
     public UserDto getUserDTOByEmail(String email) {
 
         User user = userRepo.findByEmail(email);
-//        System.out.println("user = " + user);
-//        UserDto userDto = new UserDto();
-//      userDto.setEmail(user.getEmail());
-//        return userDto;
         return mapper.map(user, UserDto.class);
 
 
@@ -180,5 +169,60 @@ public class UserServiceImpl implements UserService {
 
 
     }
+    @Override
+    public UserDto updateUser(int userId, UserDto updatedUserDto) {
+        Optional<User> userOptional = userRepo.findById(userId);
+
+        if (userOptional.isPresent()) {
+            User existingUser = userOptional.get();
+
+            existingUser.setFristName(updatedUserDto.getFristName());
+            existingUser.setLastName(updatedUserDto.getLastName());
+            existingUser.setAddress(updatedUserDto.getAddress());
+            existingUser.setContact(updatedUserDto.getContact());
+            existingUser.setEmail(updatedUserDto.getEmail());
+            existingUser.setNic(updatedUserDto.getNic());
+            existingUser.setDateOfBirth(updatedUserDto.getDateOfBirth());
+            existingUser.setGender(updatedUserDto.getGender());
+            existingUser.setRole(updatedUserDto.getRole());
+
+            User updatedUser = userRepo.save(existingUser);
+
+            return convertToDTO(updatedUser);
+        } else {
+            throw new EntityNotFoundException("User with ID " + userId + " not found");
+        }
+    }
+    private UserDto convertToDTO(User user) {
+        UserDto userDto = new UserDto();
+        userDto.setId(user.getId());
+        userDto.setFristName(user.getFristName());
+        userDto.setLastName(user.getLastName());
+        userDto.setAddress(user.getAddress());
+        userDto.setContact(user.getContact());
+        userDto.setEmail(user.getEmail());
+        userDto.setNic(user.getNic());
+        userDto.setDateOfBirth(user.getDateOfBirth());
+        userDto.setGender(user.getGender());
+        userDto.setRole(user.getRole());
+        userDto.setCreatedDate(user.getCreatedDate());
+        userDto.setDeleted(user.isDeleted());
+        userDto.setVerificationCode(user.getVerificationCode());
+        userDto.setEnabled(user.isEnabled());
+
+        return userDto;
+    }
+
+    @Override
+    public void deleteUser(int userId) {
+        Optional<User> userOptional = userRepo.findById(userId);
+
+        if (userOptional.isPresent()) {
+            userRepo.deleteById(userId);
+        } else {
+            throw new EntityNotFoundException("User with ID " + userId + " not found");
+        }
+    }
+
 
 }

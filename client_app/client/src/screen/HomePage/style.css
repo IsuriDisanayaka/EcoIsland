@@ -4,8 +4,8 @@
   min-height: 100vh;
 }
 
-.popup {
-  background-color: #133447;
+.sign_popup {
+  background-color: #ffffff;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -16,7 +16,7 @@
   transform: translate(-50%, -50%);
   width: 50%;
   max-width: 500px;
-  height: 45%;
+  height: 55%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -62,7 +62,7 @@
 .popupsignup .datepicker {
   width: 100%;
 }
-.react-datepicker__input-container {
+*/ .react-datepicker__input-container {
   position: relative;
   display: inline-block;
   width: 208%;
@@ -72,9 +72,9 @@
   color: #5f0c0c;
 }
 .popupsignup .submit {
-  width: 50%;
-  max-width: 139px;
-  height: 41px;
+  width: 63%;
+  max-width: 428px;
+  height: 45px;
   padding: 10px;
   border: none;
   border-radius: 20px;
@@ -82,22 +82,29 @@
   font-size: 16px;
   cursor: pointer;
   background-color: #43df84;
-  margin-top: 10px;
-  margin-left: auto;
+  margin-top: -12px;
+  margin-left: 250px;
 }
 
-.popup input {
+.sign_popup input {
   width: 403px;
   margin-top: 35px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
+  bottom: 72px;
+  position: relative;
 }
-
-.popup .loginButton {
-  width: 50%;
-  max-width: 139px;
+.react-datepicker__input-container {
+  position: relative;
+  display: inline-block;
+  width: 208%;
+}
+.sign_popup .loginButton {
+  position: relative;
+  width: 75%;
+  width: 423px;
   height: 41px;
   padding: 10px;
   border: none;
@@ -106,36 +113,64 @@
   font-size: 16px;
   cursor: pointer;
   background-color: #43df84;
-  bottom: 100px;
-  right: 9px;
+  bottom: 32px;
+  right: 2px;
 }
 
-.popup .loginButton:hover {
+.sign_popup .loginButton:hover {
   background-color: #052e07;
   cursor: progress;
 }
-.popup .forgot-password-button {
+.popupsignup .submit:hover {
+  background-color: #052e07;
+  cursor: progress;
+}
+.sign_popup .forgot-password-button {
   right: 141px;
   width: auto;
-  top: 23px;
+  top: -57px;
+  position: relative;
   padding: 5px 10px;
   background-color: transparent;
   color: #adcbbc;
   font-size: 11px;
-  border: 1px solid #020403;
-  border-radius: 5px;
   cursor: pointer;
   margin-top: 10px;
   text-align: left;
 }
-.popup .forgot-password-button {
+.sign_popup .forgot-password-button {
   cursor: pointer !important;
 }
+.custom-button {
+  display: flex;
+  width: 83%;
+  height: 20px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 1rem;
+  border: 2px solid #ccc;
+  padding: 1rem;
+  background-color: #cfdfd0;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+}
+
+.custom-button:hover {
+  background-color: rgba(73, 88, 68, 0.5);
+}
+
 .sign-in-button {
   bottom: 60px;
-  color: black;
+  color: #535c68;
   display: flex;
+  text-align: center;
+  width: 363px;
+  position: relative;
+  left: 301px;
+  top: -1px;
 }
+
 .sign-in-button-text {
   color: green;
   position: relative;
@@ -143,15 +178,26 @@
   height: 15px;
   top: 22px;
 }
-
+.sign-up-button {
+  bottom: 60px;
+  color: #535c68;
+  display: flex;
+}
+.sign-up-button-text {
+  color: green;
+  position: relative;
+  border: aliceblue;
+  height: 15px;
+  top: 22px;
+}
 .close-button {
   padding-left: 438px;
-  width: 24px;
+  width: 15px;
   color: white;
   height: 18px;
   cursor: pointer;
   position: relative;
-  top: 38px;
+  bottom: 34px;
 }
 .close-button_signUp {
   padding-left: 849px;
@@ -175,7 +221,7 @@
 
 .button {
   color: white;
-  background-color: black;
+  background-color: #535c68;
   width: 100px;
 }
 .logout-icon {
@@ -202,7 +248,6 @@
   width: 100%;
 }
 .content {
-  /* padding: 20px; */
   flex-grow: 1;
   display: flex;
   justify-content: center;
@@ -236,11 +281,11 @@
 .overlay.transformed {
   transform: translateX(0);
 }
-.popup,
+.sign_popup,
 .overlay {
   transition: none !important;
 }
-.popup.open,
+.sign_popup.open,
 .overlay.open {
   transition: none !important;
 }
@@ -256,8 +301,8 @@
 }
 .join-button-container {
   position: relative;
-  left: 50%;
-  top: 70%;
+  left: 13%;
+  top: 76%;
   width: 250px;
   height: 100px;
   border-radius: 50%;
@@ -288,32 +333,50 @@
 }
 
 .title_Eco {
-  color: #fff;
+  color: #ebf0f3;
   font-size: 180px;
   font-weight: bold;
   position: absolute;
-  top: 10%;
-  left: 50%;
+  top: 35%;
+  left: 26%;
+  font-family: initial;
   transform: translate(-50%, -50%);
   text-align: center;
 }
 
 .mainParagraph {
-  color: #9ac9a285;
+  color: #f7f7f696;
   font-family: fangsong;
   font-size: 48px;
   font-weight: bold;
   position: absolute;
-  top: 46%;
-  left: 50%;
+  top: 63%;
+  left: 37%;
   transform: translate(-50%, -50%);
-  text-align: center;
+  text-align: left;
 }
 
 .footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  color: #030303;
   font-size: 35px;
+}
+.build-up-text {
+  animation: build-up 1s linear infinite;
+}
+@keyframes build-up {
+  0% {
+    color: rgb(255, 255, 255);
+  }
+  50% {
+    color: rgb(68, 68, 68);
+  }
+  75% {
+    color: rgb(0, 0, 0);
+  }
+  /* 100% {
+    color: red;
+  } */
 }

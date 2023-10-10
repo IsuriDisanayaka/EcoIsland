@@ -28,13 +28,18 @@ public class DataInitializer implements ApplicationRunner {
         admin1.setId(1);
         admin1.setEmail("admin1@example.com");
         admin1.setPassword("12345r");
+        admin1.setRole("admin");
+
         adminRepo.save(admin1);
 
         Admin admin2 = new Admin();
         admin2.setId(2);
         admin2.setEmail("admin2@example.com");
         admin2.setPassword("123");
+        admin2.setRole("admin");
+
         adminRepo.save(admin2);
+
 
     }
 

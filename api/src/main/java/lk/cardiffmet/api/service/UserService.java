@@ -24,5 +24,6 @@ public interface UserService {
 
  Boolean searchUser(String email, String password) ;
 boolean login(String email, String password);
-
+    UserDto updateUser(int userId, UserDto updatedUserDto);
+    void deleteUser(int userId);
     }

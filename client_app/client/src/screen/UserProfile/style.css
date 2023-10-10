@@ -1,0 +1,184 @@
+.user-profile-container {
+  display: flex;
+  flex-direction: column;
+  height: 85vh;
+  margin-top: 5px;
+  margin-left: 65px;
+}
+
+.user-profile-card {
+  background-color: #fff;
+  margin-top: 41px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 1208px;
+  text-align: left;
+}
+.user-profile-deletebutton {
+  background-color: #8b141a;
+  color: #fff;
+  height: 51px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 312px;
+  position: relative;
+  bottom: -23px;
+  left: 27px;
+}
+.redBackground:hover {
+  background-color: red;
+  color: white;
+}
+.user-profile-deletebutton:hover {
+  background-color: #f74d6b;
+  color: black;
+}
+.user-profile-title {
+  font-size: 47px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.user-profile-field {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.user-profile-label {
+  font-weight: 800;
+  font-size: 16px;
+  color: #555;
+  width: 200px;
+}
+
+.user-profile-input {
+  font-size: 16px;
+  border: none;
+  border-bottom: 1px solid #555;
+  padding: 17px;
+  width: 100%;
+}
+
+.user-profile-buttons {
+  display: flex;
+  margin-top: 20px;
+}
+
+.user-profile-button {
+  background-color: #05334e;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 312px;
+}
+
+.user-profile-button:hover {
+  background-color: #26adfc;
+  color: black;
+}
+
+.user-profile-cancelbutton {
+  top: 67px;
+  width: 200px;
+  left: 11px;
+}
+.user-profile-confirmbutton {
+  top: 67px;
+  width: 200px;
+  left: -12px;
+  z-index: 999;
+}
+.user-profile-Updatebutton {
+  background-color: #05334e;
+  color: #fff;
+  height: 50px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 312px;
+  position: relative;
+  bottom: -4px;
+  left: 2px;
+}
+.user-profile-Updatebutton:hover {
+  background-color: #26adfc;
+  color: black;
+}
+.update-modal,
+.delete-modal {
+  position: fixed;
+  top: 77px;
+  right: 20px;
+  background: white;
+  border: 1px solid #ccc;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  text-align: center;
+}
+
+.update-modal button,
+.delete-modal button {
+  margin: 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.update-modal button:last-child,
+.delete-modal button:last-child {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+}
+
+.update-modal button:first-child,
+.delete-modal button:first-child {
+  background-color: #ccc;
+  color: #fff;
+  border: none;
+}
+
+.update-modal button:hover,
+.delete-modal button:hover {
+  opacity: 0.8;
+}
+
+.delete-modal {
+  position: fixed;
+  top: 77px;
+  right: 20px;
+  background: white;
+  border: 1px solid #f1ecec;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  text-align: center;
+}
+
+.delete-modal button {
+  margin: 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.delete-modal button:first-child {
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+}
+
+.delete-modal button:last-child {
+  background-color: #ccc;
+  color: #080808;
+  border: none;
+}
+
+.delete-modal button:hover {
+  opacity: 0.8;
+}

@@ -15,5 +15,7 @@ public class AdminDto implements SuperDto {
     private int id;
     private String email;
     private String password;
+    private String role;
+
 }
 
