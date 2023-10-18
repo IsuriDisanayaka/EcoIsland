@@ -1,0 +1,23 @@
+.total {
+  justify-content: center;
+  position: relative;
+
+  font-size: 65px;
+  left: 43px;
+  bottom: 66px;
+  padding-bottom: 1pxx;
+}
+.totalcustomer {
+  font-stretch: expanded;
+  font-style: bold;
+  font-size: 10px;
+  color: rgb(101, 189, 125);
+  font-stretch: expanded;
+  font-size: 24px;
+  font-style: bold;
+  font-family: fantasy;
+}
+
+body {
+  overflow: hidden;
+}
