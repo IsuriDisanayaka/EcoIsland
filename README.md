@@ -47,8 +47,8 @@ Set up the MySQL database for the backend
 
         cd client_app/client 
 
-2. Install frontend dependencies:
-
+2.Install frontend dependencies:
+       
         npm install
 
 ### Firebase Integration
