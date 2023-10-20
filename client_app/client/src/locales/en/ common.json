@@ -1,0 +1,10 @@
+{
+  "language-selector": {
+    "label": "Language:",
+    "languages": {
+      "si": "Sinhala",
+      "en": "English",
+      "SignUp": "SignUp"
+    }
+  }
+}
