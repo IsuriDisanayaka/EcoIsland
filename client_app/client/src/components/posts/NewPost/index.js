@@ -5,6 +5,8 @@ import axios from 'axios';
 import "./style.css";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useTranslation } from 'react-i18next';
+
 const firebaseConfig = {
     apiKey: "AIzaSyBNA9OznXwIJt88-bFs3mqXoiz59HPJHUA",
     authDomain: "ecoisland-1a35b.firebaseapp.com",
@@ -25,6 +27,7 @@ function NewPostForm({ onPostSubmit }) {
     const [image, setImage] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const userData = JSON.parse(localStorage.getItem("userData"));
+    const { t } = useTranslation();
 
 
 
@@ -97,7 +100,7 @@ function NewPostForm({ onPostSubmit }) {
             <h2 style={{
                 fontWeight: 'lighter', fontSize: '53px',
                 fontFamily: 'fangsong', color: 'rgb(13 37 167)'
-            }}>Create New Post</h2>
+            }}>{t("Create New Post")}</h2>
 
             <div className="new-post-form-container">
 
@@ -105,14 +108,14 @@ function NewPostForm({ onPostSubmit }) {
                     <div className="form-group">
                         <input
                             type="text" style={{ height: '62px' }}
-                            placeholder="Title"
+                            placeholder={t("Title")}
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
                         />
                     </div>
                     <div className="form-group">
                         <textarea
-                            placeholder="Content" style={{ height: '162px' }}
+                            placeholder={t("Content")} style={{ height: '162px' }}
                             value={content}
                             onChange={(e) => setContent(e.target.value)}
                         />
@@ -121,7 +124,7 @@ function NewPostForm({ onPostSubmit }) {
                     <div className="form-group">
                         <input
                             type="number" style={{ height: '35px' }}
-                            placeholder="Price"
+                            placeholder={t("Price")}
                             value={price}
                             onChange={(e) => setPrice(e.target.value)}
                         />
@@ -132,7 +135,7 @@ function NewPostForm({ onPostSubmit }) {
                             onChange={handleFileChange}
                         />
                     </div>
-                    <button type="submit" className="submit-button">Create Post</button>
+                    <button type="submit" className="submit-button">{t("Create Post")}</button>
                     {isLoading && <div className="loading-indicator">Loading...</div>}
                 </form>
             </div>

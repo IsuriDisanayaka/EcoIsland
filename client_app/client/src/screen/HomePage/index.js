@@ -11,6 +11,12 @@ import logo from "../../assets/img/logo.png";
 import homepic from "../../assets/img/homepage.png";
 import closeIcon from "../../assets/img/close.png";
 import Slideshow from "../Slideshow";
+import { useTranslation } from 'react-i18next';
+import LanguageDropdown from "../../components/LanguageDropdown";
+import { GoogleLogin } from 'react-google-login';
+
+
+
 
 
 import "./style.css";
@@ -43,6 +49,18 @@ export default function HomePage() {
   const [isRegistered, setIsRegistered] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [color, setColor] = useState("black");
+  const [firstNameError, setFirstNameError] = useState(false);
+  const [lastNameError, setLastNameError] = useState(false);
+  const [addressError, setAddressError] = useState(false);
+  const [contactError, setContactError] = useState(false);
+
+
+  const { t } = useTranslation();
+
+
+  const clientId = "265116055269-i1cu737065l1jiidtqm1die776mcsn8n.apps.googleusercontent.com"
+
+
 
   const changeColor = (newColor) => {
     setColor(newColor);
@@ -116,12 +134,15 @@ export default function HomePage() {
     console.log("Save button clicked");
     event.preventDefault();
     if (!fristName || !lastName || !address || !contact || !email || !nic || !dateOfBirth || !gender || !password || !reEnterpassword) {
-      toast.warning('Please fill out all required fields.', { autoClose: 3000 });
-
+      toast.warning(t("Please fill out all required fields."), {
+        autoClose: 3000,
+      });
       return;
     }
     if (password !== reEnterpassword) {
-      toast.warning('Passwords do not match.', { autoClose: 3000 });
+      toast.warning(t("Passwords do not match."), {
+        autoClose: 3000,
+      });
 
       return;
 
@@ -142,7 +163,10 @@ export default function HomePage() {
       .then(response => {
         console.log('Successfully saved customer:', response.data);
         toast.success('successfully!', { autoClose: 3000 });
-        toast.info('Please Check your email and verify email', { autoClose: 4000 })
+
+        toast.info(t("Please Check your email and verify email"), {
+          autoClose: 4000,
+        });
         clearTextUser();
         setIsRegistered(true);
       })
@@ -151,6 +175,17 @@ export default function HomePage() {
         toast.error('An error occurred. Please try again later.', { autoClose: 3000 });
 
       });
+  };
+  const handleGoogleLoginSuccess = (response) => {
+    console.log('Google Login Success', response);
+    // window.location.href = '/UserDashboard/';
+
+  };
+
+  const handleGoogleLoginFailure = (error) => {
+    console.log('Google Login Failed', error);
+    // window.location.href = '/UserDashboard/';
+
   };
 
 
@@ -205,19 +240,24 @@ export default function HomePage() {
       });
     }
   };
+
+
   return (
     <ThemeProvider theme={theme}>
       <div className="root">
         <AppBar position="static" className="appBar">
+
           <Toolbar>
             <img className="logo" src={logo} alt="" />
+
+            <LanguageDropdown />
             <div className="button-container">
               <Button
                 variant="contained"
                 className={`button ${signInClicked ? "clicked" : ""}`}
                 onClick={handleSignInButtonClick}
               >
-                Sign Up
+                {t('SignUp')}
               </Button>
 
               {showSignInPopup && (
@@ -227,11 +267,11 @@ export default function HomePage() {
                     <h1 style={{
                       color: "#1d5507", bottom: "61px",
                       position: "relative"
-                    }}>Sign In</h1>
+                    }}>{t('SignIn')}</h1>
 
                     <input
                       type="string"
-                      placeholder="Email"
+                      placeholder={t("Email")}
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                     />
@@ -239,7 +279,7 @@ export default function HomePage() {
 
                     <input
                       type={showPassword ? 'text' : 'password'}
-                      placeholder="Password"
+                      placeholder={t("Password")}
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                     />
@@ -253,11 +293,12 @@ export default function HomePage() {
                     </span>
 
                     <Button className="forgot-password-button"
-                    >forgot password</Button>
+                    >{t("forgot password")}</Button>
 
 
-                    <button className="loginButton" onClick={handleLogin}>Login</button>
-                    <button className="custom-button">
+                    <button className="loginButton" onClick={handleLogin}>{t('SignIn')}</button>
+
+                    {/* <button className="custom-button">
                       <span>
                         <svg
                           width="20"
@@ -290,58 +331,127 @@ export default function HomePage() {
                             </clipPath>
                           </defs>
                         </svg>
-                      </span>Sign in with Google
-                    </button>
+                      </span>{t("Sign in with Google")}
+                    </button> */}
+                    <GoogleLogin
+                      clientId={clientId}
+                      buttonText="Login with Google"
+                      onSuccess={handleGoogleLoginSuccess}
+                      onFailure={handleGoogleLoginFailure}
+                      cookiePolicy={'single_host_origin'}
+                    />
+
                     <div className="sign-up-button">
 
-                      <h3>  Don’t have any account?: </h3>
+                      <h3> {t("Don’t have any account?: ")}</h3>
+
                       <button onClick={handleSignagainUpClick} className="sign-up-button-text">
-                        Sign Up
+                        {t('SignUp')}
                       </button>
                     </div>
                   </div>
                 </div>
               )}
 
-              <Button variant="contained" className={`button ${signUpClicked ? "clicked" : ""}`} onClick={handleSignUpButtonClick} >  Sign In </Button>
+              <Button variant="contained" className={`button ${signUpClicked ? "clicked" : ""}`} onClick={handleSignUpButtonClick} >  {t("SignIn")} </Button>
               {showPopup && (
                 <div className="overlay">
                   <div className="popupsignup">
                     <img src={closeIcon} className="close-button_signUp" alt="" onClick={() => setShowPopup(false)} />
                     <h1 style={{
                       color: "#1d5507",
-                    }}>Sign Up</h1>
+                    }}> {t("SignUp")}</h1>
                     <div className="input-row">
                       <div className="input-column">
-                        <input type="text" placeholder="First Name" value={fristName} onChange={(e) => setFristName(e.target.value)} />
-                        <input placeholder="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                        <input type="text" placeholder="Address" value={address} onChange={(e) => setAddress(e.target.value)} />
-                        <input type="text" placeholder="Contact" value={contact} onChange={(e) => setContact(e.target.value)} />
-                        <input type="text" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                        <input type="text" placeholder={t("First Name")}
+                          value={fristName} onChange={(e) => {
+                            const input = e.target.value;
+                            const regex = /^[a-zA-Z]+$/;
+                            if (regex.test(input) || input === '') {
+                              setFristName(input);
+                              setFirstNameError(false);
+                            } else {
+                              setFirstNameError(true);
+                            }
+                          }
+                          }
+                          error={firstNameError}
+                          helperText={firstNameError ? 'Invalid character' : ''}
+                        />
+
+
+                        <input placeholder={t("Email")} type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                        <input type="text" placeholder={t("Address")} value={address} onChange={(e) => {
+
+
+                          const input = e.target.value;
+                          const regex = /^[a-zA-Z0-9./ ,]+$/; // regular expression for allowed characters
+                          if (regex.test(input) || input === '') {
+                            setAddress(input);
+                            setAddressError(false);
+                          } else {
+                            setAddressError(true);
+                          }
+                        }}
+                          error={addressError}
+                          helperText={addressError ? 'Invalid character' : ''}
+                        />
+                        <input type="text" placeholder={t("Contact")} value={contact} onChange={(e) => {
+                          const input = e.target.value;
+                          const regex = /^\d{10,10}$|^\d{1,10}$/; // regular expression for allowed characters
+                          if (input.length <= 11 && (regex.test(input) || input === '')) {
+                            setContact(input);
+                            setContactError(false);
+                          } else {
+                            setContactError(true);
+
+                          }
+
+                        }}
+                          error={contactError}
+                          helperText={contactError ? 'Invalid contact number' : ''}
+
+                        />
+                        <input type="text" placeholder={t("Password")} value={password} onChange={(e) => setPassword(e.target.value)} />
 
                       </div>
                       <div className="input-column">
-                        <input type="text" placeholder="Last Name" value={lastName} onChange={(e) => setLastName(e.target.value)} />
-                        <input type="text" placeholder="NIC Number" value={nic} onChange={(e) => setNic(e.target.value)} />
-                        <DatePicker className="datepicker " placeholderText="Date Of Birth"
+                        <input type="text" placeholder={t("Last Name")}
+                          value={lastName} onChange={(e) => {
+                            const input = e.target.value;
+                            const regex = /^[a-zA-Z]+$/
+                            if (regex.test(input) || input === '') {
+                              setLastName(input);
+                              setLastNameError(false);
+                            } else {
+                              setLastNameError(true);
+                            }
+                          }
+                          }
+                          error={lastNameError}
+                          helperText={lastNameError ? 'Invalid character' : ''}
+
+
+                        />
+                        <input type="text" placeholder={t("NIC Number")} value={nic} onChange={(e) => setNic(e.target.value)} />
+                        <DatePicker className="datepicker " placeholderText={t("Date Of Birth")}
                           selected={dateOfBirth}
                           onChange={(date) => setDateOfBirth(date)}
                           minDate={new Date("1920-01-01")}
                           maxDate={new Date("2016-12-31")}
                         />
 
-                        <input type="text" placeholder="Gender" value={gender} onChange={(e) => setGender(e.target.value)} />
-                        <input type="text" placeholder="Re-Enter Password" value={reEnterpassword} onChange={(e) => setReEnterPassword(e.target.value)} />
+                        <input type="text" placeholder={t("Gender")} value={gender} onChange={(e) => setGender(e.target.value)} />
+                        <input type="text" placeholder={t("Re-Enter Password")} value={reEnterpassword} onChange={(e) => setReEnterPassword(e.target.value)} />
                       </div>
                     </div>
                     <Button className="submit" onClick={handleSaveUser}>
-                      Submit
+                      {t('SignUp')}
                     </Button>
-
                     <div className="sign-in-button">
-                      <h3> If you have already account: </h3>
+                      <h3> {t("If you have already account:")} </h3>
                       <button onClick={handleSignagainInClick} className="sign-in-button-text">
-                        Sign In
+                        {t("SignIn")}
                       </button>
                     </div>
                   </div>
@@ -361,7 +471,7 @@ export default function HomePage() {
                   fontSize: '20px', fontWeight: 'bold', boxShadow: ' 0 0 10px 4px)',
                   color: '#535c68', backgroundColor: '#535c6836', width: '350px', height: '50px', borderRadius: '25px'
                 }} onClick={handleGettingStartedClick}
-                >Getting Started  </Button>
+                >{t("Getting Started")} </Button>
 
               </div>
             </div>
@@ -370,7 +480,7 @@ export default function HomePage() {
           <div>
             <p className="title_Eco">EcoIsland</p>
             <p className="mainParagraph ">
-              Discover a world of sustainable treasures and support local communities
+              {t("Discover a world of sustainable treasures and support local communities")}
             </p>
           </div>
         </div>

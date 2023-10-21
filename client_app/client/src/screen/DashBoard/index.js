@@ -6,11 +6,15 @@ import "./style.css";
 import Chart from '../../components/chart';
 import post from '../../assets/img/post.png';
 import users from '../../assets/img/users.png';
+import { useTranslation } from 'react-i18next';
+
 
 
 function Dashboard() {
   const [totalCustomers, setTotalCustomers] = useState(null);
   const [totalPosts, setTotalPosts] = useState(null);
+  const { t } = useTranslation();
+
 
   useEffect(() => {
     axios.get('http://localhost:8080/api/v1/user/total')
@@ -39,7 +43,7 @@ function Dashboard() {
       <h1 style={{
         fontWeight: 'lighter', fontSize: '53px',
         fontFamily: 'fangsong', color: '#a70d92'
-      }}>DashBoard</h1>
+      }}>{t("DashBoard")}</h1>
       <Grid item xs={3} md={6} lg={7}>
         <Paper
           sx={{
@@ -73,7 +77,7 @@ function Dashboard() {
               marginLeft: '-500px'
             }}
           >
-            <p className='totalcustomer' style={{ color: 'rgb(71 41 125)', FrontStyle: 'bold', frontFamily: 'fantasy', fontStretch: 'expanded' }}>Customer Total</p>
+            <p className='totalcustomer' style={{ color: 'rgb(71 41 125)', FrontStyle: 'bold', frontFamily: 'fantasy', fontStretch: 'expanded' }}>{t("Customer Total")}</p>
             <p className='total'> {totalCustomers}</p>
             <img src={users} style={{ marginLeft: '252px', width: '149px', marginTop: '-248px' }} />
 
@@ -92,7 +96,7 @@ function Dashboard() {
               marginTop: '-87px',
             }}
           >
-            <p className='totalcustomer' style={{ color: 'rgb(110 119 43)', FrontStyle: 'bold', frontFamily: 'fantasy', fontStretch: 'expanded' }}>Post Total</p>
+            <p className='totalcustomer' style={{ color: 'rgb(110 119 43)', FrontStyle: 'bold', frontFamily: 'fantasy', fontStretch: 'expanded' }}>{t("Post Total")}</p>
             <p className='total'> {totalPosts}</p>
             <img src={post} style={{ marginLeft: '252px', width: '149px', marginTop: '-258px' }} />
 

@@ -15,6 +15,7 @@ import PictureAsPdfOutlinedIcon from '@mui/icons-material/PictureAsPdfOutlined';
 import CloudDownloadOutlinedIcon from '@mui/icons-material/CloudDownloadOutlined';
 import { Modal, Button } from '@mui/material';
 import "./seeAlluser.css"
+import { useTranslation } from 'react-i18next';
 
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
@@ -43,7 +44,7 @@ const ViewAllCustomer = () => {
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [rowToDeleteId, setRowToDeleteId] = useState(null);
 
-
+  const { t } = useTranslation();
   const [selectedRowData, setSelectedRowData] = useState(null);
 
   const handleRowClick = (rowData) => {
@@ -131,27 +132,27 @@ const ViewAllCustomer = () => {
         <h1 style={{
           marginLeft: ' -37px', fontWeight: 'lighter', fontSize: '53px',
           fontFamily: 'fangsong', color: '#a70d92'
-        }}>Customer Information</h1>
+        }}>{t("Customer Information")}</h1>
 
         <div className="card flex flex-column md:flex-row gap-3">
           <div style={{ marginTop: "90px", marginLeft: '-35px' }}>
             <input type="text" id="search-input" />
             <select id="search-type">
-              <option value="id">Id</option>
-              <option value="firstName">Frist Name</option>
-              <option value="gender">Gender</option>
-              <option value="LastName">Last Name</option>
-              <option value="nic">NIC</option>
-              <option value="contact">Contact</option>
-              <option value="address">Address</option>
+              <option value="id">{t("Id")}</option>
+              <option value="firstName">{t("First Name")}</option>
+              <option value="gender">{t("Gender")} </option>
+              <option value="LastName">{t("Last Name")} </option>
+              <option value="nic">{t("NIC Number")}</option>
+              <option value="contact">{t("Contact")} </option>
+              <option value="address">{t("Address")}</option>
             </select>
             <button onClick={() => handleSearch(document.getElementById('search-type').value, document.getElementById('search-input').value)} style={{
               height: '36px', width: '89px', fontFamily: 'inherit', fontWeight: 'bolder', backgroundColor: '#57C'
-            }} >Search</button>
+            }} >{t("Search")}</button>
             {showSearchResults ? (
               <button onClick={handleReset} style={{
                 height: '36px', width: '89px', fontFamily: 'inherit', fontWeight: 'bolder', backgroundColor: 'yellow'
-              }} >Reset</button>
+              }} >{t("Reset")}</button>
             ) : null}
           </div>
         </div>
@@ -178,7 +179,7 @@ const ViewAllCustomer = () => {
           <Table style={{ width: '78vw' }}>
             <TableHead  >
               <TableRow style={{ fontWeight: ' bolder', fontSize: '16px' }}>
-                <TableCell style={{ fontWeight: ' bolder', fontSize: '16px' }}>ID</TableCell>
+                <TableCell style={{ fontWeight: ' bolder', fontSize: '16px' }}>{t("Id")}</TableCell>
                 <TableCell style={{ fontWeight: ' bolder', fontSize: '16px' }}
                   sortDirection={orderBy === 'firstName' ? order : false}
                 >
@@ -187,7 +188,7 @@ const ViewAllCustomer = () => {
                     direction={orderBy === 'firstName' ? order : 'asc'}
                     onClick={handleSort('firstName')}
                   >
-                    First Name
+                    {t("First Name")}
                   </TableSortLabel>
                 </TableCell>
                 <TableCell
@@ -198,20 +199,19 @@ const ViewAllCustomer = () => {
                     direction={orderBy === 'lastName' ? order : 'asc'}
                     onClick={handleSort('lastName')} style={{ fontWeight: ' bolder', fontSize: '18px' }}
                   >
-                    Last Name
+                    {t("Last Name")}
                   </TableSortLabel>
                 </TableCell>
 
-                <TableCell style={{ fontWeight: ' bolder', fontSize: '16px' }} >Address</TableCell>
-                <TableCell style={{ fontWeight: ' bolder', fontSize: '16px' }} >Contact</TableCell>
-                <TableCell style={{ fontWeight: ' bolder', fontSize: '16px' }}>Email</TableCell>
-                <TableCell style={{ fontWeight: ' bolder', fontSize: '16px' }}>NIC</TableCell>
-                <TableCell style={{ fontWeight: ' bolder', fontSize: '16px' }}>Date of Birth</TableCell>
-                <TableCell style={{ fontWeight: ' bolder', fontSize: '16px' }}>Gender</TableCell>
-                <TableCell style={{ fontWeight: ' bolder', fontSize: '16px' }}>Role</TableCell>
-                <TableCell style={{ fontWeight: ' bolder', fontSize: '16px' }}>Created Date</TableCell>
-                <TableCell style={{ fontWeight: ' bolder', fontSize: '16px' }} >Email Verify</TableCell>
-                <TableCell style={{ fontWeight: ' bolder', fontSize: '16px' }} >Delete</TableCell>
+                <TableCell style={{ fontWeight: ' bolder', fontSize: '16px' }} >{t("Address")}</TableCell>
+                <TableCell style={{ fontWeight: ' bolder', fontSize: '16px' }} >{t("Contact")}</TableCell>
+                <TableCell style={{ fontWeight: ' bolder', fontSize: '16px' }}>{t("Email")}</TableCell>
+                <TableCell style={{ fontWeight: ' bolder', fontSize: '16px' }}>{t("NIC Number")}</TableCell>
+                <TableCell style={{ fontWeight: ' bolder', fontSize: '16px' }}>{t("Date Of Birth")}</TableCell>
+                <TableCell style={{ fontWeight: ' bolder', fontSize: '16px' }}>{t("Gender")}</TableCell>
+                <TableCell style={{ fontWeight: ' bolder', fontSize: '16px' }}>{t("Created Date")}</TableCell>
+                <TableCell style={{ fontWeight: ' bolder', fontSize: '16px' }} >{t("Email Verify")}</TableCell>
+                <TableCell style={{ fontWeight: ' bolder', fontSize: '16px' }} >{t("Delete")}</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -226,7 +226,6 @@ const ViewAllCustomer = () => {
                   <TableCell>{row.nic}</TableCell>
                   <TableCell>{row.dateOfBirth.substr(0, 10)}</TableCell>
                   <TableCell>{row.gender}</TableCell>
-                  <TableCell>{row.role}</TableCell>
                   <TableCell>{row.createdDate.substr(0, 10)}</TableCell>
                   <td>{row.enabled ? 'Verified' : 'Not verified yet'}</td>
                   <TableCell >
@@ -240,7 +239,7 @@ const ViewAllCustomer = () => {
                       }}
                       onClick={() => handleDelete(row.id)}
                     >
-                      Delete
+                      {t("Delete")}
                     </IconButton>
                   </TableCell>
 
