@@ -29,6 +29,9 @@ import HomeIcon from '@mui/icons-material/Home';
 import LogoutIcon from '@mui/icons-material/Logout'
 import PostAll from '../../screen/AllPost';
 import logo from "../../assets/img/logo.png";
+import { useTranslation } from 'react-i18next';
+import LanguageDropdown from "../../components/LanguageDropdown";
+
 
 import CloudDownloadOutlinedIcon from '@mui/icons-material/CloudDownloadOutlined';
 
@@ -114,6 +117,7 @@ function UserListItems() {
     }
 
 
+    const { t } = useTranslation();
 
 
 
@@ -147,12 +151,14 @@ function UserListItems() {
                         <Typography
                             component="h1"
                             variant="h6"
-                            color="inherit"
+                            color="#000"
+                            fontWeight={"bold"}
                             noWrap
                             sx={{ flexGrow: 1 }}
                         >
-                            Welcome
+                            {t("Welcome")}
                         </Typography>
+                        <LanguageDropdown />
 
                     </Toolbar>
                 </AppBar>
@@ -206,7 +212,7 @@ function UserListItems() {
                                     </ListItemIcon>
                                     <ListItemText style={{
                                         textDecoration: 'none', color: 'white',
-                                    }} primary="Home" />
+                                    }} primary={t("Home")} />
                                 </ListItem>
 
                             </Link>
@@ -223,7 +229,7 @@ function UserListItems() {
                                     </ListItemIcon>
                                     <ListItemText style={{
                                         textDecoration: 'none', color: 'white',
-                                    }} primary="My Profile" />
+                                    }} primary={t("My Profile")} />
 
                                 </ListItem>
                             </Link>
@@ -237,7 +243,7 @@ function UserListItems() {
                                     </ListItemIcon>
                                     <ListItemText style={{
                                         textDecoration: 'none', color: 'white',
-                                    }} primary="New Post" />
+                                    }} primary={t("New Post")} />
                                 </ListItem>
                             </Link>
                         </List>
@@ -250,7 +256,7 @@ function UserListItems() {
                                 </ListItemIcon>
                                 <ListItemText style={{
                                     textDecoration: 'none', color: 'white',
-                                }} primary="Logout" />
+                                }} primary={t("Logout")} />
                             </ListItem>
                         </Link>
 
@@ -258,7 +264,7 @@ function UserListItems() {
                             width: "306px", position: 'relative'
                             , top: '269px'
                         }} variant="contained" startIcon={<AutoAwesomeIcon style={{ color: 'yellow' }} />}>
-                            Upgrade Pro
+                            {t("Upgrade Pro")}
                         </Button>
 
                     </Drawer>

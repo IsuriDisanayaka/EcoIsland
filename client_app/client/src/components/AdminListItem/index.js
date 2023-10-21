@@ -31,6 +31,8 @@ import logo from "../../assets/img/logo.png";
 import SeeAllUser from "../../screen/UserProfile/SeeAllUser"
 import BackupTableIcon from '@mui/icons-material/BackupTable';
 import ApprovalIcon from '@mui/icons-material/Approval';
+import LanguageDropdown from '../LanguageDropdown';
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -108,6 +110,8 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 function ListItems() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(true);
+
+    const { t } = useTranslation();
     const toggleDrawer = () => {
         setOpen(!open);
     };
@@ -151,14 +155,16 @@ function ListItems() {
                         <Typography
                             component="h1"
                             variant="h6"
-                            color="inherit"
+                            color="#000"
+                            fontWeight={"bold"}
                             noWrap
                             sx={{ flexGrow: 1 }}
                         >
-                            Admin Dashboard
+                            {t("Admin Dashboard")}
                         </Typography>
-
+                        <LanguageDropdown />
                     </Toolbar>
+
                 </AppBar>
                 <Drawer variant="permanent" open={open}>
                     <Toolbar
@@ -211,7 +217,7 @@ function ListItems() {
                                     </ListItemIcon>
                                     <ListItemText style={{
                                         textDecoration: 'none', color: 'white',
-                                    }} primary="Home" />
+                                    }} primary={t("Home")} />
                                 </ListItem>
 
                             </Link>
@@ -229,7 +235,7 @@ function ListItems() {
                                     </ListItemIcon>
                                     <ListItemText style={{
                                         textDecoration: 'none', color: 'white',
-                                    }} primary="Customers" />
+                                    }} primary={t("Customers")} />
                                 </ListItem>
 
                             </Link>
@@ -248,7 +254,7 @@ function ListItems() {
                                     </ListItemIcon>
                                     <ListItemText style={{
                                         textDecoration: 'none', color: 'white',
-                                    }} primary="Post All" />
+                                    }} primary={t("Posts")} />
                                 </ListItem>
                             </Link>
                             <Link to="/AdminDashboard/adminProfile" style={{ textDecoration: 'none', color: 'white' }}>
@@ -257,11 +263,11 @@ function ListItems() {
 
                                 }}>
                                     <ListItemIcon>
-                                        <PersonIcon s style={{ color: '#fff' }} />
+                                        <PersonIcon  style={{ color: '#fff' }} />
                                     </ListItemIcon>
                                     <ListItemText style={{
                                         textDecoration: 'none', color: 'white',
-                                    }} primary="My Profile" />
+                                    }} primary={t("My Profile")} />
 
                                 </ListItem>
                             </Link>
@@ -275,7 +281,7 @@ function ListItems() {
                                     </ListItemIcon>
                                     <ListItemText style={{
                                         textDecoration: 'none', color: 'white',
-                                    }} primary="Posts For Approvel" />
+                                    }} primary={t("Posts For Approvel")} />
                                 </ListItem>
                             </Link>
                         </List>
@@ -288,7 +294,7 @@ function ListItems() {
                                 </ListItemIcon>
                                 <ListItemText style={{
                                     textDecoration: 'none', color: 'white',
-                                }} primary="Logout" />
+                                }} primary={t("Logout")} />
                             </ListItem>
                         </Link>
 
@@ -296,7 +302,7 @@ function ListItems() {
                             width: "306px", position: 'relative'
                             , top: '269px'
                         }} variant="contained" startIcon={<AutoAwesomeIcon style={{ color: 'yellow' }} />}>
-                            Upgrade Pro
+                            {t("Upgrade Pro")}
                         </Button>
 
 

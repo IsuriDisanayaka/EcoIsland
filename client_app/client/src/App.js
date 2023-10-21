@@ -9,6 +9,9 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { ToastContainer } from 'react-toastify';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useTranslation } from 'react-i18next';
+import  "./i18n"
+
 const theme = createTheme();
 
 
@@ -27,6 +30,7 @@ const analytics = getAnalytics(app);
 
 function App() {
   const isLoggedIn = localStorage.getItem('loggedIn');
+  const { t } = useTranslation();
 
   return (
     <ThemeProvider theme={theme}>

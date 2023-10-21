@@ -4,6 +4,7 @@ import "./style.css";
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useTranslation } from 'react-i18next';
 
 
 
@@ -21,7 +22,7 @@ export default function UserProfile() {
   const [updatedUserData, setUpdatedUserData] = useState({ ...userData });
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
-
+  const { t } = useTranslation();
 
 
   const handleUpdateUser = () => {
@@ -32,9 +33,9 @@ export default function UserProfile() {
   function UpdateConfirmationModal({ onCancel, onConfirm }) {
     return (
       <div className="update-modal">
-        <p>Have you just finished updating the details?</p>
-        <button onClick={onConfirm}>Confirm</button>
-        <button onClick={onCancel}>Cancel</button>
+        <p>{t("Have you just finished updating the details?")}</p>
+        <button onClick={onConfirm}>{t("Confirm")}</button>
+        <button onClick={onCancel}>{t("Cancel")}</button>
       </div>
     );
   }
@@ -109,11 +110,11 @@ export default function UserProfile() {
       <h1 className="user-profile-title" style={{
         fontWeight: 'lighter', fontSize: '53px',
         fontFamily: 'fangsong', color: 'rgb(13 37 167)'
-      }}>My Profile</h1>
+      }}>{t("My Profile")}</h1>
       <div className="user-profile-card">
         <div className="user-profile-field">
           <label className="user-profile-label" htmlFor="firstName">
-            First Name:
+          {t("First Name")}:
           </label>
           <input
             id="fristName"
@@ -128,7 +129,7 @@ export default function UserProfile() {
         </div>
         <div className="user-profile-field">
           <label className="user-profile-label" htmlFor="lastName">
-            Last Name:
+          {t("Last Name")}:
           </label>
           <input
             id="lastName"
@@ -142,7 +143,7 @@ export default function UserProfile() {
         </div>
         <div className="user-profile-field">
           <label className="user-profile-label" htmlFor="address">
-            Address:
+          {t("Address")} :
           </label>
           <input
             id="address"
@@ -156,7 +157,7 @@ export default function UserProfile() {
         </div>
         <div className="user-profile-field">
           <label className="user-profile-label" htmlFor="nic">
-            NIC Number:
+          {t("NIC Number")}:
           </label>
           <input
             id="nic"
@@ -170,7 +171,7 @@ export default function UserProfile() {
         </div>
         <div className="user-profile-field">
           <label className="user-profile-label" htmlFor="contact">
-            Contact:
+          {t("Contact")}:
           </label>
           <input
             id="contact"
@@ -184,7 +185,7 @@ export default function UserProfile() {
         </div>
         <div className="user-profile-field">
           <label className="user-profile-label" htmlFor="email">
-            Email:
+          {t("Email")}:
           </label>
           <input
             id="email"
@@ -198,7 +199,7 @@ export default function UserProfile() {
         </div>
         <div className="user-profile-field">
           <label className="user-profile-label" htmlFor="dateOfBirth">
-            Date Of Birth:
+          {t("Date Of Birth")}:
           </label>
           <input
             id="dateOfBirth"
@@ -220,13 +221,13 @@ export default function UserProfile() {
           </>
 
           <button className="user-profile-Updatebutton" onClick={handleUpdateUser}>
-            Update
+            {t("Update")}
           </button>
 
         </div>
         <button className="user-profile-deletebutton"
           onClick={handleDeleteUser}>
-          Delete
+           {t("Delete")}
         </button>
       </div>
       {isUpdateModalOpen && (
@@ -237,9 +238,9 @@ export default function UserProfile() {
       )}
       {isDeleteModalOpen && (
         <div className="delete-modal">
-          <p>Are you sure you want to delete your account?</p>
-          <button onClick={handleConfirmDelete}>Yes</button>
-          <button onClick={handleCancelDelete}>No</button>
+          <p>{t("Are you sure you want to delete your account?")}</p>
+          <button onClick={handleConfirmDelete}>{t("Yes")}</button>
+          <button onClick={handleCancelDelete}>{t("No")}</button>
         </div>
       )}
     </div>

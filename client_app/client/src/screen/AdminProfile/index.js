@@ -4,7 +4,8 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import admin from '../../assets/img/admin.png';
-
+import LanguageDropdown from "../../components/LanguageDropdown";
+import { useTranslation } from 'react-i18next';
 
 const Modal = ({ title, content, onConfirm, onCancel }) => {
   return (
@@ -31,6 +32,7 @@ export default function AdminProfile() {
   const [showPasswordModal, setShowPasswordModal] = useState(false);
   const [showNewPasswordField, setShowNewPasswordField] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
+  const { t } = useTranslation();
 
   const handleConfirmPasswordUpdate = () => {
     const adminDto = {
@@ -70,12 +72,12 @@ export default function AdminProfile() {
         <h1 style={{
           fontWeight: 'lighter', fontSize: '53px',
           fontFamily: 'fangsong', color: '#a70d92'
-        }}>My Profile</h1>
+        }}>{t("My Profile")}</h1>
         <div className="profile-box">
           <img src={admin} style={{ width: '142px', paddingLeft: 198 }} />
 
           <div className="mb-4">
-            <label className="label" htmlFor="email">Email:</label>
+            <label className="label" htmlFor="email">{t("Email")}:</label>
             <input
               id="email"
               type="text"
@@ -85,7 +87,7 @@ export default function AdminProfile() {
             />
           </div>
           <div className="mb-4">
-            <label className="label" htmlFor="password">Password:</label>
+            <label className="label" htmlFor="password">{t("Password")}:</label>
             <input
               id="password"
               type="password"
@@ -105,11 +107,11 @@ export default function AdminProfile() {
         <h1 style={{
           fontWeight: 'lighter', fontSize: '53px',
           fontFamily: 'fangsong', color: '#a70d92', marginLeft: '-99px', marginTop: '15px',
-        }}> Change Password</h1>
+        }}> {t("Change Password")}</h1>
         <div className="change-box">
 
           <div className="mb-4">
-            <label className="label" htmlFor="password">Password:</label>
+            <label className="label" htmlFor="password">{t("Password")}:</label>
             <input
               id="password"
               type="password"
@@ -119,7 +121,7 @@ export default function AdminProfile() {
           </div>
 
           <div className="mb-4">
-            <label className="label" htmlFor="newPassword">New Password:</label>
+            <label className="label" htmlFor="newPassword">{t("New Password")}:</label>
             <input
               id="newPassword"
               type="password"
@@ -136,7 +138,7 @@ export default function AdminProfile() {
                 setShowNewPasswordField(true);
               }}
             >
-              Update
+              {t("Update")}
             </button>
           </div>
         </div>

@@ -7,12 +7,16 @@ import IconButton from '@mui/material/IconButton';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
+import { useTranslation } from 'react-i18next';
+
 
 function PostList() {
   const [posts, setPosts] = useState([]);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [selectedPost, setSelectedPost] = useState(null);
   const [noNewPosts, setNoNewPosts] = useState(false);
+  const { t } = useTranslation();
+
   const fetchPendingPosts = () => {
     axios.get('http://localhost:8080/api/v1/post/all')
       .then((response) => {
@@ -71,7 +75,7 @@ function PostList() {
       <h1 style={{
         fontWeight: 'lighter', fontSize: '53px',
         fontFamily: 'fangsong', color: '#a70d92'
-      }}> Post For Approval</h1>
+      }}> {t("Posts For Approval")}</h1>
       <div style={{ textAlign: 'center', padding: '20px' }}>
         {noNewPosts ? (
           <div style={{
@@ -90,10 +94,10 @@ function PostList() {
               <Grid item xs={12} sm={6} md={4} lg={3} key={post.postId}>
                 <Paper elevation={3} sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
                   <Typography variant="h6">{post.title}</Typography>
-                  <Typography>User Name: {post.fristName}</Typography>
-                  <Typography>Contact: {post.contact}</Typography>
-                  <Typography>Address: {post.address}</Typography>
-                  <Typography>Price: {post.price}</Typography>
+                  <Typography>{t("User Name")}: {post.fristName}</Typography>
+                  <Typography>{t("Contact")} : {post.contact}</Typography>
+                  <Typography>{t("Address")}: {post.address}</Typography>
+                  <Typography>{t("Price")}: {post.price}</Typography>
                   <Typography variant="body2">{post.content}</Typography>
                   <img className="post-image" src={post.imageUrl} alt="Post Image" />
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '16px' }}>

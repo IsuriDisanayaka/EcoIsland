@@ -1,0 +1,76 @@
+.language-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.language-dropdown-content {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  z-index: 1;
+  display: none;
+}
+
+.language-dropdown-content ul {
+  list-style: none;
+  padding: 0;
+}
+
+.language-dropdown-content li {
+  cursor: pointer;
+}
+
+.language-dropdown-content li:hover {
+  background-color: #f2f2f2;
+}
+
+.language-dropdown.is-open .language-dropdown-content {
+  display: block;
+}
+.english_button {
+  height: 38px;
+  margin-left: 65px;
+  width: 85px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  cursor: pointer;
+}
+.language-button {
+  height: 38px;
+  margin-left: 17px;
+  width: 85px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  cursor: pointer;
+}
+.tamillanguage-button {
+  height: 38px;
+  margin-left: 17px;
+  width: 85px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.english_button:hover {
+  background-color: #0e5bc0;
+}
+.language-button:hover {
+  background-color: #2b7a21;
+}
+.tamillanguage-button:hover {
+  background-color: #7a7821;
+}
+.selected {
+  background-color: green; /* You can change this to the desired color */
+  color: white; /* Text color for the selected button */
+  /* Add any other styling you want for the selected button */
+}

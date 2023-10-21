@@ -6,9 +6,12 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
 import "./style.css";
+import { useTranslation } from 'react-i18next';
 
 function PostAll() {
     const [posts, setPosts] = useState([]);
+    const [searchQuery, setSearchQuery] = useState(''); // State to store the search query
+    const { t } = useTranslation();
 
     useEffect(() => {
         axios.get('http://localhost:8080/api/v1/post/all')
@@ -18,9 +21,16 @@ function PostAll() {
             })
             .catch((error) => {
                 console.error('Error fetching posts:', error);
-
             });
     }, []);
+
+    const handleSearch = (event) => {
+        const query = event.target.value;
+        setSearchQuery(query);
+    }
+
+    // Filter posts based on the search query
+    const filteredPosts = posts.filter(post => post.title.toLowerCase().includes(searchQuery.toLowerCase()));
 
     return (
         <div style={{ marginLeft: '50px', marginTop: '-20px' }}>
@@ -28,10 +38,19 @@ function PostAll() {
                 <h1 style={{
                     fontWeight: 'lighter', fontSize: '53px',
                     fontFamily: 'fangsong', color: '#a70d92'
-                }}>Today-market</h1>
+                }}>{t("Today-market")}</h1>
                 <div style={{ margin: '25px' }} className="scrollable-content">
+                    {/* Search bar */}
+                    <input
+                        type="text"
+                        placeholder="Search Posts"
+                        value={searchQuery}
+                        onChange={handleSearch}
+                        style={{ marginBottom: '20px', width: '100%', padding: '10px' }}
+                    />
+
                     <Grid container spacing={2}>
-                        {posts.map((post) => (
+                        {filteredPosts.map((post) => (
                             <Grid item xs={12} sm={6} md={4} lg={3} key={post.postId}>
                                 <Paper elevation={3} sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
                                     <Typography style={{
@@ -40,10 +59,10 @@ function PostAll() {
                                         fontFamily: 'fangsong',
                                         color: '#a92'
                                     }} variant="h6">{post.title}</Typography>
-                                    <Typography > Name: {post.fristName}</Typography>
-                                    <Typography>Contact: {post.contact}</Typography>
-                                    <Typography>Address: {post.address}</Typography>
-                                    <Typography>Price: {post.price}</Typography>
+                                    <Typography >{t("User Name")}: {post.fristName}</Typography>
+                                    <Typography>{t("Contact")} : {post.contact}</Typography>
+                                    <Typography>{t("Address")}: {post.address}</Typography>
+                                    <Typography>{t("Price")} :{post.price}</Typography>
 
                                     <Typography style={{
                                         fontSize: '18px',
