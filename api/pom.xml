@@ -145,7 +145,7 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-crypto</artifactId>
-            <version>5.5.8</version> <!-- Use the same version as spring-security-core -->
+            <version>5.8.7</version> <!-- Use the same version as spring-security-core -->
         </dependency>
         <dependency>
             <groupId>javax.mail</groupId>
