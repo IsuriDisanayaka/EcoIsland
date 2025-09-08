@@ -105,7 +105,7 @@
         <dependency>
             <groupId>com.google.firebase</groupId>
             <artifactId>firebase-admin</artifactId>
-            <version>8.1.0</version> <!-- Replace with the latest version -->
+            <version>9.6.0</version> <!-- Replace with the latest version -->
         </dependency>
 
         <dependency>
